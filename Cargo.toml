@@ -4,10 +4,5 @@ version = "0.1.0"
 edition = "2018"
 authors = ["Evan Anderson <evan.w.and@gmail.com>"]
 
-# the profile used for `cargo build`
-[profile.dev]
-panic = "abort"
-
-# the profile used for `cargo build --release`
-[profile.release]
-panic = "abort"
+[dependencies]
+bootloader = "0.9.8"
