@@ -2,7 +2,7 @@
 
 ## About
 
-This project is a work-in-progress. Following the clarifying guide at os.phil-opp.com, I am implementing a free-standing operating system in Rust. After writing the core OS, I plan to build programs that run on the kernel, including:
+This project is a work-in-progress. Following the clarifying guide at [os.phil-opp.com](https://os.phil-opp.com/), I am implementing a free-standing operating system in Rust. After writing the core OS, I plan to build programs that run on the kernel, including:
 
 - A simple text editor
 - Games (Minesweeper, Snake)
