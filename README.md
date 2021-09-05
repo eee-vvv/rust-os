@@ -15,6 +15,6 @@ For the past couple of months, I have been learning the Rust language whenever I
 
 By building an OS, I am learning how software functions at the lowest level, and answering the basic question: what does it mean to write a program that relies on nothing but the computer's hardware? As I am a JavaScript programmer, this is great way to learn computer science fundamentals (how exactly does a stack work?, how does software interface with hardware?, etc.), and to become a better Rust developer specifcally and a batter back-end developer overall.
 
-Forced to rely on minimal abstraction, I can't take for granted anything: no keyboard support, no heap, no way to display even text to a display, until I've implemented it by hand.
+Forced to rely on minimal abstraction, I can't take anything for granted: no keyboard support, no heap, no way to display text to a user, until I've implemented it by hand.
 
 Follow along to watch me grow and create a fun, little OS!
