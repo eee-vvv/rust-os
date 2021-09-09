@@ -11,9 +11,17 @@ mod vga_buffer;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("Hello Evan{}", "!");
+    println!("Hello Providence!");
 
     rust_os::init();
+
+    let ptr = 0x20676c as *mut u32;
+
+    unsafe { let _x = *ptr; }
+    println!("read worked");
+
+    unsafe { *ptr = 42; }
+    println!("write worked");
 
     #[cfg(test)]
     test_main();
