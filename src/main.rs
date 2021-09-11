@@ -5,23 +5,21 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
+use bootloader::BootInfo;
 
 mod serial;
 mod vga_buffer;
 
 #[no_mangle]
-pub extern "C" fn _start() -> ! {
+pub extern "C" fn _start(boot_info: &'static BootInfo) -> ! {
     println!("Hello Providence!");
 
     rust_os::init();
 
-    let ptr = 0x20676c as *mut u32;
-
-    unsafe { let _x = *ptr; }
-    println!("read worked");
-
-    unsafe { *ptr = 42; }
-    println!("write worked");
+    use x86_64::registers::control::Cr3; 
+    
+    let (level_4_page_table, _) = Cr3::read();
+    println!("Level 4 page table at: {:?}", level_4_page_table.start_address());
 
     #[cfg(test)]
     test_main();
