@@ -5,14 +5,15 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
+use bootloader::{BootInfo, entry_point};
 
 mod serial;
 mod vga_buffer;
 
-#[no_mangle]
-pub extern "C" fn _start() -> ! {
-    println!("Hello Evan{}", "!");
+entry_point!(kernel_main);
 
+fn kernel_main(boot_info: &'static BootInfo) -> ! {
+    println!("Hello Providence!");
     rust_os::init();
 
     #[cfg(test)]
