@@ -4,8 +4,11 @@
 #![test_runner(rust_os::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
+extern crate alloc;
+
+use alloc::boxed::Box;
+use bootloader::{entry_point, BootInfo};
 use core::panic::PanicInfo;
-use bootloader::{BootInfo, entry_point};
 
 mod serial;
 mod vga_buffer;
@@ -15,6 +18,8 @@ entry_point!(kernel_main);
 fn kernel_main(boot_info: &'static BootInfo) -> ! {
     println!("Hello Providence!");
     rust_os::init();
+
+    let x = Box::new(41);
 
     #[cfg(test)]
     test_main();
