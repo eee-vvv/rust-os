@@ -16,8 +16,20 @@ mod vga_buffer;
 entry_point!(kernel_main);
 
 fn kernel_main(boot_info: &'static BootInfo) -> ! {
-    println!("Hello Providence!");
+    use rust_os::allocator;
+    use rust_os::memory::{self, BootInfoFrameAllocator};
+
+    println!("Hello fuckers!");
     rust_os::init();
+
+    let phys_mem_offset = VirtAddr::new(boot_info.physical_memory_offset);
+    let mut mapper = unsafe { memory::init(phys_mem_offset) };
+    let mut frame_allocator = unsafe {
+        BootInfoFrameAllocator::init(&boot_info.memory_map)
+    };
+
+    allocator::init_heap(&mut mapper, &mut frame_allocator)
+        .expect("heap initialization failed");
 
     let x = Box::new(41);
 
