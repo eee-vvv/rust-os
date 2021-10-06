@@ -40,9 +40,15 @@ fn kernel_main(boot_info: &'static BootInfo) -> ! {
 
     let reference_counted = Rc::new(vec![1, 2, 3]);
     let cloned_reference = reference_counted.clone();
-    println!("current reference count is {}", Rc::strong_count(&cloned_reference));
+    println!(
+        "current reference count is {}",
+        Rc::strong_count(&cloned_reference)
+    );
     core::mem::drop(reference_counted);
-    println!("reference count is {} now", Rc::strong_count(&cloned_reference));
+    println!(
+        "reference count is {} now",
+        Rc::strong_count(&cloned_reference)
+    );
 
     #[cfg(test)]
     test_main();
