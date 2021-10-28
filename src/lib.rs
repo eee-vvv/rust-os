@@ -11,12 +11,13 @@ use core::panic::PanicInfo;
 
 extern crate alloc;
 
+pub mod allocator;
 pub mod gdt;
 pub mod interrupts;
-pub mod serial;
-pub mod vga_buffer;
 pub mod memory;
-pub mod allocator;
+pub mod serial;
+pub mod task;
+pub mod vga_buffer;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u32)]
@@ -84,7 +85,7 @@ pub fn test_panic_handler(info: &PanicInfo) -> ! {
 }
 
 #[cfg(test)]
-use bootloader::{BootInfo, entry_point};
+use bootloader::{entry_point, BootInfo};
 
 #[cfg(test)]
 entry_point!(test_kernel_main);
